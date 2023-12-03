@@ -1,8 +1,9 @@
-<?php
+    <?php
 
-use Illuminate\Support\Facades\Route;
+    use Illuminate\Support\Facades\Route;
+    use Illuminate\Http\Request;
 
-/*
+    /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
@@ -13,6 +14,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+    Route::get('/', function () {
+        return view('welcome');
+    });
+    Route::get('/hello', function () {
+        return 'Hello world';
+    });
+
+    Route::get('/post/{id}', function ($id) {
+        // ddd($id);
+        return response('Post' . $id);
+    })->where('id', '[0-9]+');
+
+    Route::get('/search', function (Request $request) {
+        // dd($request);
+        return response('Search' . $request);
+        // return response('Search' . $request->name . ' ' . $request->city);
+    });
