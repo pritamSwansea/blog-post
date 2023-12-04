@@ -2,6 +2,7 @@
 
     use Illuminate\Support\Facades\Route;
     use Illuminate\Http\Request;
+    use App\Models\listing;
 
     /*
 |--------------------------------------------------------------------------
@@ -14,8 +15,23 @@
 |
 */
 
+    // Route::get('/', function () {
+    //     return view('welcome');
+    // });
+    // All listing
     Route::get('/', function () {
-        return view('welcome');
+        return view('listings', [
+            'heading' => 'Latest listing',
+            'listings' => listing::all()
+        ]);
+    });
+
+    // get by id
+    Route::get('/listings/{listing}', function (listing $listing) {
+        // dd(listing::find($id));
+        return view('listing', [
+            'listing' => $listing
+        ]);
     });
     Route::get('/hello', function () {
         return 'Hello world';
