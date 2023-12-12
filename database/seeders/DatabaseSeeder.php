@@ -4,7 +4,8 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\listing;
+use App\Models\Listing;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -48,6 +49,12 @@ class DatabaseSeeder extends Seeder
         //     aliquid, quam illum quaerat consequatur!
         //     Expedita ab consectetur tenetur delensiti?'
         // ]);
-        listing::factory(6)->create();
+        $user = User::factory()->create([
+            'name' => 'John Doe',
+            'email' => 'john@gmail.com'
+        ]);
+        listing::factory(6)->create([
+            'user_id' => $user->id
+        ]);
     }
 }
