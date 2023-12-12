@@ -11,6 +11,7 @@
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
         />
+       
         <script src="https://cdn.tailwindcss.com"></script>
         <script>
             tailwind.config = {
@@ -23,7 +24,7 @@
                 },
             };
         </script>
-        <title>LaraGigs | Find Laravel Jobs & Projects</title>
+        <title>Blog posts</title>
     </head>
     <body class="mb-48">
         <nav class="flex justify-between items-center mb-4">

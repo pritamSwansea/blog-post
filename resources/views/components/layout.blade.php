@@ -20,6 +20,7 @@
             },
           },
         },
+        // plugins:[require('@tailwindcss/forms')]
       }
   </script>
   <title>LaraGigs | Find Laravel Jobs & Projects</title>

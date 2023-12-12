@@ -52,4 +52,5 @@
       </form>
     </x-card> --}}
   </div>
+  <livewire:comments :listing="$listing"/>
 </x-layout>
