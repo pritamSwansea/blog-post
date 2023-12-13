@@ -4,16 +4,19 @@ namespace App\Livewire;
 
 use App\Models\Comment;
 use App\Models\Listing;
+use Illuminate\Database\Eloquent\Model;
 use Livewire\Component;
 
 class CommentCreate extends Component
 {
     public string $comment = '';
     public Listing $listing;
-
-    public function mount(Listing $listing)
+    public ?Comment $commentModel = null;
+    public function mount(Listing $listing, $commentModel = null)
     {
         $this->listing = $listing;
+        $this->commentModel = $commentModel;
+        $this->comment = $commentModel ? $commentModel->comment : '';
     }
     public function render()
     {
@@ -25,10 +28,24 @@ class CommentCreate extends Component
         if (!$user) {
             return $this->redirect('/login');
         }
-        $comment = Comment::create([
-            'comment' => $this->comment,
-            'listing_id' => $this->listing->id,
-            'user_id' => $user->id
-        ]);
+        if ($this->commentModel) {
+            if ($this->commentModel->user_id != $user->id) {
+                return response('You are not authorized to perform this action', 403);
+            }
+            $this->commentModel->comment = $this->comment;
+            $this->commentModel->save();
+            $this->comment = '';
+            $this->dispatch('commentUpdated');
+        } else {
+
+            $comment = Comment::create([
+                'comment' => $this->comment,
+                'listing_id' => $this->listing->id,
+                'user_id' => $user->id
+            ]);
+            $this->dispatch('commentCreated', $comment);
+            $this->comment = '';
+            return redirect()->with('message', 'Listing updated successfully!');
+        }
     }
 }
