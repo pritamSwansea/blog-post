@@ -16,6 +16,9 @@ return new class extends Migration
             $table->longText('comment');
             $table->foreignId('listing_id')->constrained()->onDelete('cascade');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            // Columns for the polymorphic relationship
+            $table->unsignedBigInteger('commentable_id');
+            $table->string('commentable_type');
 
             $table->timestamps();
         });

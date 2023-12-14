@@ -51,6 +51,9 @@ Route::get('/listings/manage', [ListingController::class, 'manage'])->middleware
 // Single Listing
 Route::get('/listings/{listing}', [ListingController::class, 'show']);
 
+// Single Listing
+Route::get('/listings/user/{user_id}', [ListingController::class, 'getUserList']);
+
 // Show Register/Create Form
 Route::get('/register', [UserController::class, 'create'])->middleware('guest');
 

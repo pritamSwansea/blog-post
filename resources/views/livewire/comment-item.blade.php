@@ -9,7 +9,7 @@
         </div>
         <div>
             <div>
-                <a href="" class="font-semibold text-indigp-600">
+                <a href="/listings/user/{{$comment->user->id}}" class="font-semibold text-indigp-600">
                     {{$comment->user->name}}
                 </a>
                 - {{$comment->created_at->diffForHumans()}}
@@ -22,9 +22,8 @@
             </div>
             @endif
             <div >
-                <a class="text-sm" href="">Reply</a>
                 @if(Auth::id() == $comment->user_id)
-                 | <a wire:click.prevent="startCommentEdit" class="text-sm primary" href="">Edit</a> |
+                 <a wire:click.prevent="startCommentEdit" class="text-sm primary" href="">Edit</a> |
                 <a wire:click.prevent="deleteComment"
                  class="text-sm" href="">Delete</a>
                 @endif

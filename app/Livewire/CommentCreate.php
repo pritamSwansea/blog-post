@@ -41,8 +41,11 @@ class CommentCreate extends Component
             $comment = Comment::create([
                 'comment' => $this->comment,
                 'listing_id' => $this->listing->id,
-                'user_id' => $user->id
+                'user_id' => $user->id,
+                'commentable_type' => get_class($this->listing), // or 'App\Models\Post'
+                'commentable_id' => $this->listing->id
             ]);
+
             $this->dispatch('commentCreated', $comment);
             $this->comment = '';
             return redirect()->with('message', 'Listing updated successfully!');
