@@ -16,7 +16,12 @@ class ListingController extends Controller
             'listings' => Listing::latest()->filter(request(['tag', 'search']))->paginate(6)
         ]);
     }
-
+    public function getUserList($id)
+    {
+        return view('listings.index', [
+            'listings' => Listing::where('user_id', '=', $id)->paginate(6)
+        ]);
+    }
     //Show single listing
     public function show(Listing $listing)
     {

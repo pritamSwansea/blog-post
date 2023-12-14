@@ -17,43 +17,12 @@ class DatabaseSeeder extends Seeder
     {
         \App\Models\User::factory(10)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
-        // listing::create([
-        //     'title' => 'Laravel Senior Developer',
-        //     'tags' => 'laravel, javascript',
-        //     'company' => 'Acme Corp',
-        //     'location' => 'Boston, MA',
-        //     'email' => 'email1@email. com',
-        //     'website' => "https://www.acme.com",
-        //     'description' => 'Lorem ipsum dolor sit
-        //     amet consectetur adipisicing elit. Ipsam
-        //     minima et illo reprehenderit quas possimus
-        //     voluptas repudiandae cum expedita, eveniet
-        //     aliquid, quam illum quaerat consequatur!
-        //     Expedita ab consectetur tenetur delensiti?'
-        // ]);
-        // listing::create([
-        //     'title' => 'Laravel Junior Developer',
-        //     'tags' => 'laravel, javascript',
-        //     'company' => 'Acme Corp',
-        //     'location' => 'Boston, MA',
-        //     'email' => 'email1@email. com',
-        //     'website' => "https://www.acme.com",
-        //     'description' => 'Lorem ipsum dolor sit
-        //     amet consectetur adipisicing elit. Ipsam
-        //     minima et illo reprehenderit quas possimus
-        //     voluptas repudiandae cum expedita, eveniet
-        //     aliquid, quam illum quaerat consequatur!
-        //     Expedita ab consectetur tenetur delensiti?'
-        // ]);
+
         $user = User::factory()->create([
             'name' => 'John Doe',
             'email' => 'john@gmail.com'
         ]);
-        listing::factory(6)->create([
+        listing::factory(20)->create([
             'user_id' => $user->id
         ]);
     }
