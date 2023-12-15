@@ -18,7 +18,7 @@ class Comments extends Component
     public function mount(Listing $listing)
     {
         $this->listing = $listing;
-        $this->comments = Comment::where('listing_id', '=', $this->listing->id)->orderByDesc('created_at')->get();
+        $this->comments = Comment::where('listing_id', '=', $this->listing->id)->orderByDesc('updated_at')->get();
     }
     public function render()
     {
@@ -26,12 +26,13 @@ class Comments extends Component
     }
     public function commentCreated($id)
     {
-        $this->comments = Comment::where('listing_id', '=', $this->listing->id)->orderByDesc('created_at')->get();
+        $this->comments = Comment::where('listing_id', '=', $this->listing->id)->orderByDesc('updated_at')->get();
     }
     public function commentDeleted($id)
     {
-        $this->comments = $this->comments->reject(function ($comment, $key) use ($id) {
-            return $comment->id == $id;
-        });
+        // $this->comments = $this->comments->reject(function ($comment, $key) use ($id) {
+        //     return $comment->id == $id;
+        // });
+        $this->comments =  Comment::where('listing_id', '=', $this->listing->id)->orderByDesc('updated_at')->get();
     }
 }

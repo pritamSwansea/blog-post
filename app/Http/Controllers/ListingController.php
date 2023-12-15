@@ -13,13 +13,13 @@ class ListingController extends Controller
     public function index()
     {
         return view('listings.index', [
-            'listings' => Listing::latest()->filter(request(['tag', 'search']))->paginate(6)
+            'listings' => Listing::latest()->filter(request(['tag', 'search']))->paginate(4)
         ]);
     }
     public function getUserList($id)
     {
         return view('listings.index', [
-            'listings' => Listing::where('user_id', '=', $id)->paginate(6)
+            'listings' => Listing::latest()->where('user_id', '=', $id)->orderByDesc('updated_at')->paginate(4)
         ]);
     }
     //Show single listing
