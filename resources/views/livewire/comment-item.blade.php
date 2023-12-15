@@ -12,7 +12,7 @@
                 <a href="/listings/user/{{$comment->user->id}}" class="font-semibold text-indigp-600">
                     {{$comment->user->name}}
                 </a>
-                - {{$comment->created_at->diffForHumans()}}
+                - {{$comment->updated_at->diffForHumans()}}
             </div>
             @if ($editing)
                 <livewire:comment-create :comment-model="$comment"/>

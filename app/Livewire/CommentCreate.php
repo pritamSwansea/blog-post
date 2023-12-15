@@ -36,6 +36,7 @@ class CommentCreate extends Component
             $this->commentModel->save();
             $this->comment = '';
             $this->dispatch('commentUpdated');
+            $this->dispatch('commentCreated', $this->commentModel->comment);
         } else {
 
             $comment = Comment::create([

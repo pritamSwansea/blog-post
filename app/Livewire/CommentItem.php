@@ -50,6 +50,7 @@ class CommentItem extends Component
     }
     public function commentUpdated()
     {
+
         $this->editing = false;
     }
 }
