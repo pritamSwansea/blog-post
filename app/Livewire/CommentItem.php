@@ -28,7 +28,7 @@ class CommentItem extends Component
             return $this->redirect('/login');
         }
         if ($this->comment->user_id != $user->id) {
-            return response('You are not authorized to perform this action', 403);
+            return response('You are not authorised to perform this action', 403);
         }
         $id = $this->comment->id;
         $this->comment->delete();

@@ -30,9 +30,6 @@ class Comments extends Component
     }
     public function commentDeleted($id)
     {
-        // $this->comments = $this->comments->reject(function ($comment, $key) use ($id) {
-        //     return $comment->id == $id;
-        // });
         $this->comments =  Comment::where('listing_id', '=', $this->listing->id)->orderByDesc('updated_at')->get();
     }
 }

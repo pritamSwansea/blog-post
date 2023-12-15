@@ -30,7 +30,7 @@ class CommentCreate extends Component
         }
         if ($this->commentModel) {
             if ($this->commentModel->user_id != $user->id) {
-                return response('You are not authorized to perform this action', 403);
+                return response('You are not authorised to perform this action', 403);
             }
             $this->commentModel->comment = $this->comment;
             $this->commentModel->save();
